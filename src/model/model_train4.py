@@ -1,15 +1,15 @@
 import pandas as pd
 import tensorflow as tf
 import tensorflow_hub as hub
-from tensorflow.keras import layers
+# from tensorflow.keras import layers
 import bert
 import re
 import numpy as np
 import random
 import math
-import tensorflow.keras.backend as K
 
-tf.enable_eager_execution()
+
+# tf.enable_eager_execution()
 
 TAG_RE = re.compile(r'<[^>]+>')
 
@@ -89,29 +89,29 @@ class TEXT_MODEL(tf.keras.Model):
                  name="text_model"):
         super(TEXT_MODEL, self).__init__(name=name)
 
-        self.embedding = layers.Embedding(vocabulary_size,
+        self.embedding = tf.keras.layers.Embedding(vocabulary_size,
                                           embedding_dimensions)
-        self.cnn_layer1 = layers.Conv1D(filters=cnn_filters,
+        self.cnn_layer1 = tf.keras.layers.Conv1D(filters=cnn_filters,
                                         kernel_size=2,
                                         padding="valid",
                                         activation="relu")
-        self.cnn_layer2 = layers.Conv1D(filters=cnn_filters,
+        self.cnn_layer2 = tf.keras.layers.Conv1D(filters=cnn_filters,
                                         kernel_size=3,
                                         padding="valid",
                                         activation="relu")
-        self.cnn_layer3 = layers.Conv1D(filters=cnn_filters,
+        self.cnn_layer3 = tf.keras.layers.Conv1D(filters=cnn_filters,
                                         kernel_size=4,
                                         padding="valid",
                                         activation="relu")
-        self.pool = layers.GlobalMaxPool1D()
+        self.pool =tf.keras.layers.GlobalMaxPool1D()
 
-        self.dense_1 = layers.Dense(units=dnn_units, activation="relu")
-        self.dropout = layers.Dropout(rate=dropout_rate)
+        self.dense_1 = tf.keras.layers.Dense(units=dnn_units, activation="relu")
+        self.dropout = tf.keras.layers.Dropout(rate=dropout_rate)
         if model_output_classes == 2:
-            self.last_dense = layers.Dense(units=1,
+            self.last_dense = tf.keras.layers.Dense(units=1,
                                            activation="sigmoid")
         else:
-            self.last_dense = layers.Dense(units=model_output_classes,
+            self.last_dense = tf.keras.layers.Dense(units=model_output_classes,
                                            activation="softmax")
 
     def call(self, inputs, training):
