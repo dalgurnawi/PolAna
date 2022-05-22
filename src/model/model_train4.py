@@ -1,3 +1,5 @@
+# https://stackabuse.com/text-classification-with-bert-tokenizer-and-tf-2-0-in-python/
+
 import pandas as pd
 import tensorflow as tf
 import tensorflow_hub as hub

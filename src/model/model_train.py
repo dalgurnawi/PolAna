@@ -1,3 +1,5 @@
+# Tristan word2vec embedding for word similarity from colab notebook
+
 import os
 import logging
 import os

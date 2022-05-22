@@ -1,3 +1,5 @@
+# https://keras.io/guides/understanding_masking_and_padding/
+
 import numpy as np
 import tensorflow as tf
 import tensorflow_text as tft
